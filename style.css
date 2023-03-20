@@ -62,7 +62,7 @@ div{
   position: absolute;
   background-color: inherit;
   top: 50%;
-  left: 40%;
+  left: 40vw;
   transform: translate(-50%, -50%);
   border: none; /* or border: 0; */
   padding: 20px;
@@ -119,7 +119,7 @@ button:hover {
   position: absolute;
   background-color: inherit;
   top: 50%;
-  left: 60%;
+  left: 60vw;
   transform: translate(-50%, -50%);
   border: none; /* or border: 0; */
   padding: 20px;
