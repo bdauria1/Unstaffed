@@ -3,6 +3,7 @@ body {
   text-align:center;
 }
 .center-box {
+  background-color: inherit;
   position: absolute;
   top: 30%;
   left: 50%;
@@ -123,7 +124,7 @@ div{
   top: 150%;
   left: 25%;
   transform: translate(-50%, -50%);
-  background-color: #e98a9b;
+  background-color: inherit;
   border: none; /* or border: 0; */
   padding: 20px;
   z-index: 1;
@@ -151,7 +152,7 @@ p{
   top: 250%;
   left: 75%;
   transform: translate(-50%, -50%);
-  background-color: #e98a9b;
+  background-color: inherit
   border: none; /* or border: 0; */
   padding: 20px;
   z-index: 1;
