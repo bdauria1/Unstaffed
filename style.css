@@ -39,6 +39,7 @@ div{
 }
 
 .image {
+  background-color #FFFFFF;
   position: absolute;
   width: 50%;
   top: 50%;
@@ -51,7 +52,6 @@ div{
   text-align: center;
   height: calc(100vh - 4rem);
   border-radius: 50%;
-  background-image: url('https://source.unsplash.com/1600x900/?bussiness');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
