@@ -8,13 +8,25 @@
   <body>
     <h1>Freelancer Services Search</h1>
     <form class = "form1">
-      <input type="text" placeholder="Search services...">
-      <select>
-        <option value="">All categories</option>
-        <option value="design">Design</option>
-        <option value="development">Development</option>
-        <option value="writing">Writing</option>
-        <option value="marketing">Marketing</option>
+      <input type="text" placeholder="Name...">
+      <input type="text" placeholder="Category...">
+      <input type="text" placeholder="Location...">
+      <input type="text" placeholder="Price...">
+      <input type="text" placeholder="Language...">
+      <select name="rating">
+        <option value="rating">Rating</option>
+        <option value="one">1</option>
+        <option value="two">2</option>
+        <option value="three">3</option>
+        <option value="four">4</option>
+        <option value="five">5</option>
+      </select>
+      <select name="sort">
+        <option value="Education">Education</option>
+        <option value="bachelors">Bachelors</option>
+        <option value="masters">Masters</option>
+        <option value="phd">PhD</option>
+        <option value="none">None</option>
       </select>
       <input type="submit" value="Search">
     </form>

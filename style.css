@@ -3,6 +3,33 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* style.css */
+
+.form1 {
+  /* Add some padding and margin to the form for spacing */
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  padding: 20px;
+  margin: 20px;
+  /* Add a background color and set the form width */
+  background-color: #f8f8f8;
+  width: 400px;
+  /* Add some border radius for rounded corners */
+  border-radius: 5px;
+}
+
+.input-field {
+  /* Add some padding and margin to the input fields */
+  padding: 10px;
+  margin: 5px;
+  /* Add a border and set the border radius */
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  /* Add some box shadow for a subtle effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .center-box {
   background-color: inherit;
   position: absolute;
