@@ -1,0 +1,28 @@
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  email TEXT NOT NULL,
+  is_company BOOLEAN NOT NULL
+);
+
+CREATE TABLE services (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY,
+  buyer_id INTEGER NOT NULL,
+  service_id INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (buyer_id) REFERENCES users(id),
+  FOREIGN KEY (service_id) REFERENCES services(id)
+);

@@ -1,5 +1,6 @@
 body {
   text-align:center;
+  font-family: Arial, sans-serif;
 }
 
 .center-box {
@@ -21,11 +22,32 @@ body {
   align-items: center;
 }
 
-
+.form1{
+  position: absolute;
+  top: 30%;
+  left: 38%;
+}
 h1 {
   color: #ffffff;
   font-size: 3rem;
   margin: 0;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+input[type="text"], select {
+  padding: 10px;
+  margin: 5px;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #ccc;
 }
 
 div{

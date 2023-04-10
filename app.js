@@ -48,3 +48,12 @@ function lightenColor(color, amount) {
 
   return lighterColor;
 }
+
+/* Add your JavaScript code here */
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const searchTerm = form.querySelector('input[type="text"]').value;
+  const category = form.querySelector('select').value;
+  // Add code to perform search here
+});
