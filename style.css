@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
+<<<<<<< HEAD
 /* style.css */
 
 .form1 {
@@ -29,6 +30,8 @@ body {
   /* Add some box shadow for a subtle effect */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+=======
+>>>>>>> dca4acd22dc892b7c386822d2595fa476e110631
 
 .center-box {
   background-color: inherit;
