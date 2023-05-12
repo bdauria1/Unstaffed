@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-<<<<<<< HEAD
 /* style.css */
 
 .form1 {
@@ -20,6 +19,49 @@ body {
   border-radius: 5px;
 }
 
+.form2 {
+  /* Add some padding and margin to the form for spacing */
+  position: absolute;
+  left: 0%;
+  top: 7%;
+  padding: 20px;
+  margin: 10px;
+  /* Add a background color and set the form width */
+  background-color: #f8f8f8;
+  width: 300px;
+  /* Add some border radius for rounded corners */
+  border-radius: 5px;
+  /* Move input fields to top of form */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.navbar {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  width: 100%;
+  background-color: #efabab;
+  
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 .input-field {
   /* Add some padding and margin to the input fields */
   padding: 10px;
@@ -30,8 +72,6 @@ body {
   /* Add some box shadow for a subtle effect */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-=======
->>>>>>> dca4acd22dc892b7c386822d2595fa476e110631
 
 .center-box {
   background-color: inherit;
