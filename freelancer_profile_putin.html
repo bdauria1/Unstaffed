@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Freelancer Account Creation</title>
-  <link rel="stylesheet" href="./style.css">
+  <head>
+    <title>Freelancer Account Creation</title>
+    <link rel="stylesheet" href="./style.css">
     <script src="app.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="background"></div>
-  <h1>Create Your Freelancer Account</h1>
-  <form action="/create_account" method="post">
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location"><br>
-    <label for="language">Language:</label>
-    <input type="text" id="language" name="language"><br>
-    <label for="job_type">Job Type:</label><br>
-    <input type="radio" id="short_term" name="job_type" value="short_term">
-    <label for="short_term">Short Term</label><br>
-    <input type="radio" id="long_term" name="job_type" value="long_term">
-    <label for="long_term">Long Term / Ongoing</label><br>
-    <label for="availability">Availability:</label><br>
-    <input type="radio" id="available" name="availability" value="available">
-    <label for="available">Available to Start Tomorrow</label><br>
-    <input type="radio" id="booked" name="availability" value="booked">
-    <label for="booked">Booked for a Month</label><br>
-    <label for="preferred_client">Preferred Client Type:</label><br>
-    <input type="radio" id="individual" name="preferred_client" value="individual">
-    <label for="individual">Individual</label><br>
-    <input type="radio" id="business" name="preferred_client" value="business">
-    <label for="business">Business</label><br>
-    <input type="submit" value="Create Account">
-  </form>
-</body>
+    <h1>Create Your Freelancer Account</h1>
+    <form action="/create_account" method="post" enctype="multipart/form-data">
+      <label for="profile_pic">Profile Picture:</label>
+      <input type="file" id="profile_pic" name="profile_pic"><br>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location"><br>
+      <label for="language">Language:</label>
+      <input type="text" id="language" name="language"><br>
+      <input type="submit" value="Create Account">
+    </form>
+  </body>
 </html>
