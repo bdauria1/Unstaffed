@@ -2,21 +2,33 @@
 <html>
   <head>
     <title>Freelancer Account Creation</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
   </head>
   <body>
-    <div class="background"></div>
-    <h1>Create Your Freelancer Account</h1>
-    <form action="/create_account" method="post" enctype="multipart/form-data">
+    <div class="navbar" id="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <form class="form3">
       <label for="profile_pic">Profile Picture:</label>
       <input type="file" id="profile_pic" name="profile_pic"><br>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br>
+      <img id="preview" src="" alt="Preview Image" style="display:none;"><br>
+      <labbel for="about_me">About Me:</label>
+        <input type="paragraph" id="about_me" name="about_me"><br>
+      <label for="field">Field:</label>
+      <input type="text" id="field" name="field"><br>
       <label for="location">Location:</label>
       <input type="text" id="location" name="location"><br>
       <label for="language">Language:</label>
       <input type="text" id="language" name="language"><br>
+      <label for="education">Education:</label>
+      <input type="text" id="education" name="education"><br>
+      <label for="projects">Projects:</label>
+      <input type="text" id="projects" name="projects"><br>
+      <label for="Pricing">Pricing:</label>
+      <input type="text" id="Pricing" name="Pricing"><br>
       <input type="submit" value="Create Account">
     </form>
   </body>

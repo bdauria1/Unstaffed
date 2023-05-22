@@ -3,6 +3,30 @@ body {
   font-family: Arial, sans-serif;
 }
 
+form {
+  position: absolute;
+  top: 20%;
+  left: 37.5%;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+.form4 {
+  position: absolute;
+  top: 20%;
+  left: 37.5%;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
 /* style.css */
 
 .form1 {
@@ -42,9 +66,49 @@ body {
   top: 3%;
   left: 50%;
   width: 100%;
-  background-color: #efabab;
-  
   overflow: hidden;
+  border: 3px solid #e1e1e1;
+}
+
+.contacts{
+  position: absolute;
+  top: 52%;
+  left: 10.5%;
+  width: 20%;
+  height: 90%;
+  margin: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.messages{
+  position: absolute;
+  top: 52%;
+  left: 10.5%;
+  width: 174.5%;
+  height: 90%;
+  margin: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.message-input {
+  position: absolute;
+  top: 95%;
+  left: 60%;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.message-input input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #FFFFFF;
 }
 
 /* Style the links inside the navigation bar */
@@ -58,7 +122,7 @@ body {
 
 /* Change the color of links on hover */
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: #ffffff;
   color: black;
 }
 
@@ -92,23 +156,10 @@ body {
   align-items: center;
 }
 
-.form1{
-  position: absolute;
-  top: 30%;
-  left: 38%;
-}
 h1 {
   color: #ffffff;
   font-size: 3rem;
   margin: 0;
-}
-
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
 }
 
 input[type="text"], select {
@@ -172,6 +223,19 @@ div{
 h2 {
   color: #ffffff;
 }
+.login{
+  position: absolute;
+  color: #ffffff;
+  top: 10%;
+  left: 48%;
+}
+
+.signup{
+  position: absolute;
+  color: #ffffff;
+  top: 60%;
+  left: 41%;
+}
 
 p{
   color: #ffffff;
@@ -190,6 +254,24 @@ p{
 }
 
 #button2 {
+  position: absolute;
+  top: 70%;
+  left: 46.5%;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#button3 {
+  position: absolute;
+  top: 85%;
+  left: 35%;
   padding: 10px 20px;
   font-size: 16px;
   background-color: #FFFFFF;
@@ -226,7 +308,22 @@ button:hover {
   align-items: center;
 }
 
-form {
+.form3{
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 600px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+.form5{
+  position: absolute;
+  top: 8%;
+  left: 37%;
   width: 300px;
   margin: 0 auto;
   background-color: #FFFFFF;

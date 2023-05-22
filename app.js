@@ -4,9 +4,11 @@ window.onload = function() {
   document.body.style.backgroundColor = randomColor;
 
   const buttons = document.querySelectorAll('#button1');
+  const messageInput = document.querySelector('.message-input input[type="text"]');
   buttons.forEach(function(button) {
     button.style.backgroundColor = darkenColor(randomColor, 0.02);
   });
+  messageInput.style.backgroundColor = randomColor;
 };
 
 function darkenColor(color, amount) {
@@ -56,4 +58,17 @@ form.addEventListener('submit', (event) => {
   const searchTerm = form.querySelector('input[type="text"]').value;
   const category = form.querySelector('select').value;
   // Add code to perform search here
+});
+
+// Preview uploaded image
+const fileInput = document.getElementById("profile_pic");
+const previewImg = document.getElementById("preview");
+fileInput.addEventListener("change", function() {
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function() {
+    previewImg.src = reader.result;
+    previewImg.style.display = "block";
+  }
 });
