@@ -39,10 +39,30 @@ def clogin():
             return render_template('Company_login.html', error='Invalid email or password')
         
 
-
-@app.route("/Freelancer_login", methods=['GET'])
+@app.route("/Freelancer_login", methods=['GET', 'POST'])
 def flogin():
-    return render_template('Freelancer_login.html')
+    if flask.request.method == 'GET':
+        return render_template('Freelancer_login.html')
+    else:
+        email = flask.request.form['email']
+        password = flask.request.form['password']
+
+        # Create a cursor to execute SQL queries
+        cursor = connection.cursor()
+
+        # Check if the email and password exist in the User table
+        query = "SELECT * FROM User WHERE role = 'freelancer' AND email = %s AND password = %s"
+        values = (email, password)
+        cursor.execute(query, values)
+        result = cursor.fetchone()  # Fetch a single row
+
+        if result:
+            # Login successful
+            # You can perform additional actions here, such as setting session variables
+            return "Login successful"
+        else:
+            # Login failed
+            return "Invalid email or password"
 
 @app.route("/Signup", methods=['GET'])
 def signup():
