@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unstaffed</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <div class="center-box">
+    <h1>Unstaffed</h1>
+  </div>
+  <div class="freelancer-portal">
+    <a href="{{ url_for('clogin') }}"><button id="button1">I provide a service</button></a>
+  </div>
+  <div class="company-portal">
+    <a href="{{ url_for('flogin') }}"><button id="button1">I'm looking for a service</button></a>
+  </div>
+  <div class="image">
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+body {
+  text-align:center;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  position: absolute;
+  top: 20%;
+  left: 37.5%;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+.form4 {
+  position: absolute;
+  top: 20%;
+  left: 37.5%;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+.form1 {
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  padding: 20px;
+  margin: 20px;
+  background-color: #f8f8f8;
+  width: 400px;
+  border-radius: 5px;
+}
+
+.form2 {
+  position: absolute;
+  left: 0%;
+  top: 7%;
+  padding: 20px;
+  margin: 10px;
+  background-color: #f8f8f8;
+  width: 300px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.navbar {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  border: 3px solid #e1e1e1;
+}
+
+.contacts{
+  position: absolute;
+  top: 52%;
+  left: 10.5%;
+  width: 20%;
+  height: 90%;
+  margin: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.messages{
+  position: absolute;
+  top: 52%;
+  left: 10.5%;
+  width: 174.5%;
+  height: 90%;
+  margin: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.message-input {
+  position: absolute;
+  top: 95%;
+  left: 60%;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.message-input input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid #e1e1e1;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #FFFFFF;
+}
+
+.navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+.navbar a:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+.input-field {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.center-box {
+  background-color: inherit;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  max-width: 50%;
+  min-width: 200px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 3rem;
+  margin: 0;
+}
+
+input[type="text"], select {
+  padding: 10px;
+  margin: 5px;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+div{
+  display: inline-block;
+  position:absolute;
+  top:5%;
+  left:5%;
+  -ms-transform:translate(-50%,-50%);
+  -webkit-transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%);
+}
+
+.image {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 4s linear infinite;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+  to {
+    box-shadow: 0 0 0 600px rgba(255, 255, 255, 0);
+  }
+}
+
+.freelancer-portal {
+  position: absolute;
+  background-color: inherit;
+  top: 50%;
+  left: 40vw;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 20px;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  max-width: 50%;
+  min-width: 200px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  color: #ffffff;
+}
+.login{
+  position: absolute;
+  color: #ffffff;
+  top: 10%;
+  left: 48%;
+}
+
+.signup{
+  position: absolute;
+  color: #ffffff;
+  top: 60%;
+  left: 41%;
+}
+
+p{
+  color: #ffffff;
+}
+
+#button1 {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: inherit;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#button2 {
+  position: absolute;
+  top: 70%;
+  left: 46.5%;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#button3 {
+  position: absolute;
+  top: 85%;
+  left: 35%;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.company-portal {
+  position: absolute;
+  background-color: inherit;
+  top: 50%;
+  left: 60vw;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 20px;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  max-width: 50%;
+  min-width: 200px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form3{
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 600px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+.form5{
+  position: absolute;
+  top: 8%;
+  left: 37%;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  border: none;
+  box-shadow: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="email"] {
+  width: 100%;
+  height: 30px;
+}
+
+
