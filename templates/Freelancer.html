@@ -15,5 +15,14 @@
         <a href="/dashboard">Profile</a>
         <a href="/logout">Logout</a>
     </div>
+    <div class="user_display">
+        <h1>Profile</h1>
+        <h2> Userame: {{ username }}</h2>
+        <h2>Email: {{ email }}</h2>
+        <h2>About Me: {{ about_me }}</h2>
+        <h2>Location: {{ location }}</h2>
+        <h2>Skills: {{ skills }}</h2>
+        <h2>Salary: {{ salary }}</h2>
+        <a href="{{ url_for('freelancer_input') }}"><button id="button1">update information</button></a>
 </body>
 </html>

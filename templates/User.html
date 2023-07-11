@@ -11,14 +11,17 @@
 </head>
 <body>
   <div class="navbar" id="navbar">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="/home">Home</a>
+    <a href="/search">Search</a>
+    <a href="/dashboard">Profile</a>
+    <a href="/logout">Logout</a>
   </div>
   <div class="user_display">
     <h1>Profile</h1>
     <h2> Userame: {{ username }}</h2>
     <h2>Email: {{ email }}</h2>
+    <a href="{{ url_for('user_input') }}"><button id="button1">update information</button></a>
   </div>
+  <button>
 </body>
 </html>

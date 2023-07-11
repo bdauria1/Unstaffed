@@ -12,67 +12,49 @@ mysql = MySQL(app)
 
 # Route for the home page
 @app.route('/')
+def welcome():
+    session.clear()
+    return render_template('Welcome.html')
+
+@app.route('/home')
 def home():
     return render_template('Home.html')
 
 # Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # If the user is already logged in, redirect to the home page
+    if 'username' in session:
+        return redirect('/home')
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM unstaffedusers WHERE username = %s AND password = %s",
-                    (username, password))
+        cur.execute("SELECT username, email, password, user_type, salary, location, skills, about FROM unstaffedusers WHERE username = %s AND password = %s", (username, password))
+        mysql.connection.commit()
         user = cur.fetchone()
         cur.close()
 
         if user:
-            # User authentication successful
-            session['username'] = username
-            session['email'] = user['email']
-            if user['user_type'] == 'freelancer':
-                session['salary'] = user['salary']
-                session['location'] = user['location']
-                session['skills'] = user['skills']
-                session['about_me'] = user['about_me']
-            return redirect('/dashboard')  # Redirect to the dashboard page
-        else:
-            # User authentication failed
-            error_message = 'Invalid username or password'
-            return render_template('Login.html', error=error_message)
+            session['username'] = user[0]
+            session['email'] = user[1]
+            session['password'] = user[2]
+            session['user_type'] = user[3]
 
-    return render_template('login.html')
+            if user[3] == 'freelancer':
+                session['salary'] = user[4]
+                session['location'] = user[5]
+                session['skills'] = user[6]
+                session['about'] = user[7]
+                return redirect('/freelancer_profile')
 
-@app.route('/dashboard')
-def dashboard():
-    # Check if the user is logged in and determine their user type
-    if 'username' in session:  # Assuming you are using Flask's session management
-        username = session['username']
-
-        # Retrieve the user's data from the database based on their username
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT user_type FROM unstaffedusers WHERE username = %s", (username,))
-        user = cur.fetchone()
-        cur.close()
-
-        if user:
-            # User data retrieved successfully
-            user_type = user[0]
-            if user_type == 'freelancer':
-                # User is a freelancer
-                return render_template('freelance_input.html')
-            elif user_type == 'client':
-                # User is a user
-                return render_template('User_input.html')
-            else:
-                # User type not recognized
-                return redirect('/login')
-
-    # If the user is not logged in or the user type is not recognized, redirect to the login page
-    return redirect('/login')
-
+            return redirect('/user_profile')
+        
+        return render_template('Login.html', error='Invalid username or password')
+    
+    return render_template('Login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -81,12 +63,18 @@ def signup():
           username = request.form['username']
           password = request.form['password']
           email = request.form['email']
-     
+
           cur = mysql.connection.cursor()
           cur.execute("INSERT INTO unstaffedusers(user_type, username, password, email) VALUES(%s, %s, %s, %s)",
                          (user_type, username, password, email))
           mysql.connection.commit()
           cur.close()
+
+          if user_type == 'freelancer':
+               session['salary'] = 0
+               session['location'] = ''
+               session['skills'] = ''
+               session['about'] = ''
      
           return redirect('/login')
      
@@ -96,66 +84,106 @@ def signup():
 def user_profile():
     username = session['username']
     email = session['email']
-    return render_template('User_Profile.html', username=username, email=email)
+    return render_template('User.html', username=username, email=email)
+
+@app.route('/user_input', methods=['GET', 'POST'])
+def user_input():
+    if request.method == 'POST':
+        old_username = session['username']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE unstaffedusers SET username = %s, email = %s, password = %s WHERE username = %s",
+                    (username, email, password, old_username))
+        mysql.connection.commit()
+        cur.close()
+
+        session['username'] = username
+        session['email'] = email
+        session['password'] = password
+
+        return redirect('/user_profile')  # Redirect to the user profile page
+
+    return render_template('User_input.html')
+
+@app.route('/freelancer_profile')
+def freelancer_profile():
+    # Check if the user is logged in and is a freelancer
+    if 'username' in session and session.get('user_type') == 'freelancer':
+        username = session['username']
+        email = session['email']
+        salary = session['salary']
+        location = session['location']
+        skills = session['skills']
+        about_me = session['about']
+
+        return render_template('Freelancer.html', username=username, email=email, salary=salary,
+                               location=location, skills=skills, about_me=about_me)
+
+    # If the user is not logged in or is not a freelancer, redirect to the login page
+    return redirect('/login')
+
+@app.route('/freelancer_input', methods=['GET', 'POST'])
+def freelancer_input():
+    if request.method == 'POST':
+        old_username = session['username']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        salary = request.form['salary']
+        location = request.form['location']
+        skills = request.form['skills']
+        about_me = request.form['about_me']
+
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE unstaffedusers SET username = %s, email = %s, password = %s, salary = %s, location = %s, skills = %s, about = %s WHERE username = %s",
+                    (username, email, password, salary, location, skills, about_me, old_username))
+        mysql.connection.commit()
+        cur.close()
+
+        session['username'] = username
+        session['email'] = email
+        session['password'] = password
+        session['salary'] = salary
+        session['location'] = location
+        session['skills'] = skills
+        session['about'] = about_me  # Update session key to 'about'
+
+        return redirect('/freelancer_profile')
     
+    return render_template('Freelancer_input.html')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-        if request.method == 'POST':
-            job_type = request.form['job_type']
-            location = request.form['location']
-            rate = request.form['rate']
-            availability = request.form['availability']
-            experience = request.form['experience']
-            skills = request.form['skills']
-        
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO unstaffedjobs(job_type, location, rate, availability, experience, skills) VALUES(%s, %s, %s, %s, %s, %s)",
-                            (job_type, location, rate, availability, experience, skills))
-            mysql.connection.commit()
-            cur.close()
-        
-            return redirect('/dashboard')
-        
-        return render_template('FL_Search.html')
-
-@app.route('/freelancer_profile', methods=['GET', 'POST'])
-def freelancer_profile():
     if request.method == 'POST':
-        name = request.form['name']
         location = request.form['location']
-        rate = request.form['rate']
-        availability = request.form['availability']
-        experience = request.form['experience']
         skills = request.form['skills']
-    
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO unstaffedfreelancers(name, location, rate, availability, experience, skills) VALUES(%s, %s, %s, %s, %s, %s)",
-                        (name, location, rate, availability, experience, skills))
-        mysql.connection.commit()
-        cur.close()
-    
-        return redirect('/dashboard')
-    
-    return render_template('Freelancer_Profile.html')
+        salary = request.form['salary']
 
-@app.route('/user_input', methods=['GET', 'POST'])
-def user_profile():
-    if request.method == 'POST':
-        rate = request.form['rate']
-        availability = request.form['availability']
-        experience = request.form['experience']
-        skills = request.form['skills']
-    
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO unstaffedusers(name, location, rate, availability, experience, skills) VALUES(%s, %s, %s, %s, %s, %s)",
-                        (name, location, rate, availability, experience, skills))
+        cur.execute("SELECT * FROM unstaffedusers WHERE location = %s AND skills = %s AND salary >= %s", 
+                    (location, skills, salary))
         mysql.connection.commit()
         cur.close()
+
+        return render_template('Search_results.html', location=location, skills=skills, salary=salary)
     
-        return redirect('/dashboard')
-    
-    return render_template('User_Profile.html')
+    return render_template('Search.html')
+
+@app.route('/dashboard')
+def dashboard():
+    user_type = session['user_type']
+    if user_type == 'freelancer':
+        return redirect('/freelancer_profile')
+    else:
+        return redirect('/user_profile')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
