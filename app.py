@@ -163,14 +163,48 @@ def search():
         salary = request.form['salary']
 
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM unstaffedusers WHERE location = %s AND skills = %s AND salary >= %s", 
+        cur.execute("SELECT * FROM unstaffedusers WHERE location = %s AND skills = %s AND salary >= %s ORDER BY distance ASC LIMIT 5", 
                     (location, skills, salary))
+        results = cur.fetchall()
         mysql.connection.commit()
         cur.close()
 
-        return render_template('Search_results.html', location=location, skills=skills, salary=salary)
-    
+        return render_template('Search_results.html', results=results, location=location, skills=skills, salary=salary)
+
     return render_template('Search.html')
+
+@app.route('/display_profile/<username>', methods=['GET', 'POST'])
+def display_profile(username):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
+    user = cur.fetchone()
+    mysql.connection.commit()
+    cur.close()
+
+    return render_template('Display_profile.html', user=user)
+
+@app.route('/conversation', methods=['GET', 'POST'])
+def conversation():
+    if request.method == 'POST':
+        sender = session['username']
+        receiver = request.form['receiver']
+        message = request.form['message']
+
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO messages(sender, receiver, message) VALUES(%s, %s, %s)",
+                    (sender, receiver, message))
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect('/conversation')
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT DISTINCT sender FROM messages WHERE receiver = %s", (session['username'],))
+    senders = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
+
+    return render_template('Conversation.html', senders=senders)
 
 @app.route('/dashboard')
 def dashboard():
