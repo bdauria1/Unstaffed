@@ -58,7 +58,7 @@ form {
   margin: 10px;
   background-color: #f8f8f8;
   width: 300px;
-  height: 400px;
+  height: 500px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -373,4 +373,6 @@ input[type="email"] {
   margin: 0 auto;
   padding: 20px;
 }
+
+
 

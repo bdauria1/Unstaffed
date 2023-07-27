@@ -163,7 +163,7 @@ def search():
         salary = request.form['salary']
 
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM unstaffedusers WHERE location = %s AND skills = %s AND salary >= %s ORDER BY distance ASC LIMIT 5", 
+        cur.execute("SELECT username FROM unstaffedusers WHERE user_type = 'freelancer' AND location = %s AND skills = %s AND salary >= %s ORDER BY salary DESC LIMIT 5",
                     (location, skills, salary))
         results = cur.fetchall()
         mysql.connection.commit()
@@ -173,38 +173,52 @@ def search():
 
     return render_template('Search.html')
 
-@app.route('/display_profile/<username>', methods=['GET', 'POST'])
-def display_profile(username):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
-    user = cur.fetchone()
-    mysql.connection.commit()
-    cur.close()
-
-    return render_template('Display_profile.html', user=user)
-
-@app.route('/conversation', methods=['GET', 'POST'])
-def conversation():
+@app.route('/contacts' , methods=['GET', 'POST'])
+def contacts():
     if request.method == 'POST':
-        sender = session['username']
-        receiver = request.form['receiver']
-        message = request.form['message']
+        username = session['username']
 
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO messages(sender, receiver, message) VALUES(%s, %s, %s)",
-                    (sender, receiver, message))
+        cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (username,))
+        user_id = cur.fetchone()
+
+        cur.execute("SELECT person2_id FROM connections WHERE person1_id = %s", (user_id,))
+        connections_with_person1 = cur.fetchall()
+
+        # Search for connections where the person is in person2_id column
+        cur.execute("SELECT person1_id FROM connections WHERE person2_id = %s", (user_id,))
+        connections_with_person2 = cur.fetchall()
+
+        # Combine the results from both queries to get all the connections related to the person
+        all_connections = [conn[0] for conn in connections_with_person1 + connections_with_person2]
+
+        connections = []
+        
+        for connection in all_connections:
+            cur.execute("SELECT username FROM unstaffedusers WHERE user_id = %s", (connection,))
+            connection_username = cur.fetchone()
+            connections.append(connection_username)
+
         mysql.connection.commit()
         cur.close()
 
-        return redirect('/conversation')
+        return render_template('Contacts.html', connections=connections)
 
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT DISTINCT sender FROM messages WHERE receiver = %s", (session['username'],))
-    senders = cur.fetchall()
-    mysql.connection.commit()
-    cur.close()
+    return render_template('Contacts.html')
 
-    return render_template('Conversation.html', senders=senders)
+@app.route('/view_profile/<username>', methods=['GET', 'POST'])
+def view_profile(username):
+    if request.method == 'POST':
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
+        user = cur.fetchone()
+        mysql.connection.commit()
+        cur.close()
+
+        return render_template('View_profile.html', username=user.username, email=user.email, salary=user.salary, location=user.location, skills=user.skills, about=user.about)
+
+    return render_template('View_profile.html')
 
 @app.route('/dashboard')
 def dashboard():
