@@ -69,8 +69,8 @@ form {
   position: absolute;
   top: 3%;
   left: 50%;
+  height: 60px;
   width: 100%;
-  overflow: hidden;
   border: 3px solid #e1e1e1;
 }
 
@@ -118,15 +118,9 @@ form {
 .navbar a {
   float: left;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
+  text-align: bottom;
+  padding: 1px 16px;
   text-decoration: none;
-}
-
-
-.navbar a:hover {
-  background-color: #ffffff;
-  color: black;
 }
 
 .input-field {
@@ -140,7 +134,7 @@ form {
 .center-box {
   background-color: inherit;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
@@ -148,8 +142,8 @@ form {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   max-width: 50%;
-  min-width: 200px;
-  min-height: 80px;
+  min-width: 300px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -203,7 +197,7 @@ div{
 .freelancer-portal {
   position: absolute;
   background-color: inherit;
-  top: 50%;
+  top: 55%;
   left: 45vw;
   transform: translate(-50%, -50%);
   border: none;
@@ -223,6 +217,7 @@ div{
 h2 {
   color: #ffffff;
 }
+
 .login{
   position: absolute;
   color: #ffffff;
@@ -291,7 +286,7 @@ button:hover {
 .company-portal {
   position: absolute;
   background-color: inherit;
-  top: 50%;
+  top: 55%;
   left: 55vw;
   transform: translate(-50%, -50%);
   border: none;
@@ -374,5 +369,36 @@ input[type="email"] {
   padding: 20px;
 }
 
+.logo{
+  position: relative;
+  width: 300px;
+  height: 160px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.nav_logo{
+  position: absolute;
+  top: 0%;
+  border-radius: 50%;
+  width: 100px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.nav_img{
+  position: absolute;
+  top: 1%;
+  left: 95%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.nav_tabs{
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  margin-top: auto;
+  padding: 20px;
+}

@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Unstaffed</title>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
-  </head>
-  <body>
-    <h1>Search Results</h1>
-    
-    <h2>Search Criteria:</h2>
-    <p>Location: {{ location }}</p>
-    <p>Skills: {{ skills }}</p>
-    <p>Minimum Salary: {{ salary }}</p>
-    
-    <h2>Top 5 Closest Results:</h2>
-    <div class="user_display">
-      {% for user in results %}
-      <h1>{{ user | join (', ')}}</h1>
-      <a href="{{ url_for('view_profile', username=user.username) }}"><button id="button1">View Profile</button></a>
-      {% endfor %}
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Unstaffed</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <h1>Search Results</h1>
+
+  <h2>Search Criteria:</h2>
+  <p>Location: {{ location }}</p>
+  <p>Skills: {{ skills }}</p>
+  <p>Minimum Salary: {{ salary }}</p>
+
+  <h2>Top 5 Closest Results:</h2>
+  <div class="user_display">
+    {% for user in results %}
+      <h1>{{ user }}</h1>
+      <a href="{{ url_for('view_profile', username=user) }}"><button id="button1">View Profile</button></a>
+    {% endfor %}
+  </div>
 </body>
 </html>

@@ -209,14 +209,13 @@ def contacts():
 @app.route('/view_profile/<username>', methods=['GET', 'POST'])
 def view_profile(username):
     if request.method == 'POST':
-        
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
         user = cur.fetchone()
         mysql.connection.commit()
         cur.close()
 
-        return render_template('View_profile.html', username=user.username, email=user.email, salary=user.salary, location=user.location, skills=user.skills, about=user.about)
+        return render_template('View_profile.html', user=user.username, email=user.email, salary=user.salary, location=user.location, skills=user.skills, about=user.about)
 
     return render_template('View_profile.html')
 
