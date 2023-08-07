@@ -212,12 +212,22 @@ def view_profile(username):
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
         user = cur.fetchone()
-        mysql.connection.commit()
         cur.close()
 
-        return render_template('View_profile.html', user=user.username, email=user.email, salary=user.salary, location=user.location, skills=user.skills, about=user.about)
+        if user:
+            user_info = {
+                'username': user[1],
+                'email': user[2],
+                'salary': user[5],
+                'location': user[6],
+                'skills': user[7],
+                'about': user[8]
+            }
+
+            return render_template('View_profile.html', user=user_info)
 
     return render_template('View_profile.html')
+
 
 @app.route('/dashboard')
 def dashboard():
@@ -226,6 +236,14 @@ def dashboard():
         return redirect('/freelancer_profile')
     else:
         return redirect('/user_profile')
+    
+@app.route('/about')
+def about():
+    return render_template('About_us.html')
+
+@app.route('/feedback')
+def feedback():
+    return render_template('Feedback.html')
 
 @app.route('/logout')
 def logout():

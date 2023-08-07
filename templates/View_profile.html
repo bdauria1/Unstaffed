@@ -18,17 +18,19 @@
             <a href="/search">Search</a>
             <a href="/dashboard">Profile</a>
             <a href="/contacts">Contacts</a>
+            <a href="/about_us">About Us</a>
+            <a href="/feedback">Feedback</a>
             <a href="/logout">Logout</a>
         </div>
     </div>
     <div class="user_display">
         <h1>Profile</h1>
-        <h2> Userame: {{ user }}</h2>
-        <h2>Email: {{ email }}</h2>
+        <h2> Userame: {{ user.username}}</h2>
+        <h2>Email: {{ user.email }}</h2>
         <h2>About Me: {{ about_me }}</h2>
         <h2>Location: {{ location }}</h2>
         <h2>Skills: {{ skills }}</h2>
-        <h2>Salary: {{ salary }}</h2>
+        <h2>Salary: {{ user.salary }}</h2>
         <a href><button id="button1">message this person</button></a>
 </body>
 </html>

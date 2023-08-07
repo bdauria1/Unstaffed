@@ -398,7 +398,7 @@ input[type="email"] {
 .nav_tabs{
   position: absolute;
   top: 50%;
-  left: 8%;
+  left: 12%;
   margin-top: auto;
   padding: 20px;
 }
