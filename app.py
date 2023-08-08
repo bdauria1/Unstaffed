@@ -245,6 +245,10 @@ def about():
 def feedback():
     return render_template('Feedback.html')
 
+@app.route('/post')
+def post():
+    return render_template('Post.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
