@@ -241,13 +241,37 @@ def dashboard():
 def about():
     return render_template('About_us.html')
 
-@app.route('/feedback')
+@app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
-    return render_template('Feedback.html')
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM posts ORDER BY likes DESC")
+        posts = cur.fetchall()
+        cur.close()
 
-@app.route('/post')
+        return render_template('Feedback.html', posts=posts)
+
+@app.route('/post', methods=['GET', 'POST'])
 def post():
-    return render_template('Post.html')
+    if request.method == 'POST':
+        description = request.form['description']
+
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO posts(description) VALUES(%s)", (description,))
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect('/feedback')
+    
+@app.route('/like/<int:post_id>', methods=['GET', 'POST'])
+def like(post_id):
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE posts SET likes = likes + 1 WHERE post_id = %s", (post_id,))
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect('/feedback')
 
 @app.route('/logout')
 def logout():

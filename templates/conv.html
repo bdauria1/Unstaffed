@@ -23,8 +23,12 @@
         <a href="/logout">Logout</a>
     </div>
   </div>
-  <div class ="contacts" id="contacts"></div>
-  <div class ="messages" id="messages"></div>
+  <h1>Conversation</h1>
+  <ul>
+    {% for message in messages %}
+      <li>{{ message.message }}</li>
+    {% endfor %}
+  </ul>
   <div class="message-input" id="msg">
    <input type="text" id="message" name="message" placeholder="Enter Message">
   </div>

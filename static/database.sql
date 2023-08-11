@@ -8,7 +8,7 @@ salary varchar(250),
 location varchar(250),
 skills varchar(250),
 about text,
-fixed_rate INT,
+fixed_rate varcahr(250)
 );
 
 ALTER TABLE unstaffedusers
@@ -27,5 +27,6 @@ CREATE TABLE messages (
 
 CREATE TABLE posts(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    post_text TEXT
+    post_text TEXT,
+    likes INT
 );
