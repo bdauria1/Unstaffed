@@ -301,11 +301,6 @@ p{
   color: #ffffff;
 }
 
-button:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .company-portal {
   position: absolute;
   top: 62%;
@@ -473,8 +468,23 @@ input[type="email"] {
 
 .about{
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 50%;
   margin-top: auto;
   padding: 20px;
+}
+
+.comment{
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: inherit;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }

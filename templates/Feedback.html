@@ -26,8 +26,14 @@
     <div class="post">
         <a href="{{ url_for('post') }}"><button id="button1">write a post</button></a>
     </div>
-    <div>
-        
-    </div>
+    <ul>
+        {% for post in posts %}
+        <div class="comment">
+            <h3>{{post.1}}</h3>
+            <h3>likes: {{post.2}}</h3>
+            <a href="{{ url_for('like', id=post.0) }}"><button id="button1">like</button></a>
+        </div>
+        {% endfor %}
+    </ul>
 </body>
 </html>

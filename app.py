@@ -206,27 +206,15 @@ def contacts():
 
     return render_template('Contacts.html')
 
-@app.route('/view_profile/<username>', methods=['GET', 'POST'])
+@app.route('/view_profile/<username>')
 def view_profile(username):
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM unstaffedusers WHERE username = %s", (username,))
-        user = cur.fetchone()
-        cur.close()
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT username, email, salary, location, skills, about FROM unstaffedusers WHERE username = %s", (username,))
+    user = cur.fetchone()
+    mysql.connection.commit()
+    cur.close()
 
-        if user:
-            user_info = {
-                'username': user[1],
-                'email': user[2],
-                'salary': user[5],
-                'location': user[6],
-                'skills': user[7],
-                'about': user[8]
-            }
-
-            return render_template('View_profile.html', user=user_info)
-
-    return render_template('View_profile.html')
+    return render_template('View_profile.html', user=user)
 
 
 @app.route('/dashboard')
@@ -241,37 +229,38 @@ def dashboard():
 def about():
     return render_template('About_us.html')
 
-@app.route('/feedback', methods=['GET', 'POST'])
+@app.route('/feedback')
 def feedback():
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM posts ORDER BY likes DESC")
-        posts = cur.fetchall()
-        cur.close()
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM posts ORDER BY likes DESC")
+    posts = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
 
-        return render_template('Feedback.html', posts=posts)
+    return render_template('Feedback.html', posts=posts)
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     if request.method == 'POST':
-        description = request.form['description']
+        description = session['username'] + ' says: ' + request.form['post']
 
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO posts(description) VALUES(%s)", (description,))
+        cur.execute("INSERT INTO posts(post_text, likes) VALUES(%s, 0)", (description,))
         mysql.connection.commit()
         cur.close()
 
         return redirect('/feedback')
     
-@app.route('/like/<int:post_id>', methods=['GET', 'POST'])
-def like(post_id):
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        cur.execute("UPDATE posts SET likes = likes + 1 WHERE post_id = %s", (post_id,))
-        mysql.connection.commit()
-        cur.close()
+    return render_template('Post.html')
+    
+@app.route('/like/<int:id>')
+def like(id):
+    cur = mysql.connection.cursor()
+    cur.execute("UPDATE posts SET likes = likes + 1 WHERE id = %s", (id,))
+    mysql.connection.commit()
+    cur.close()
 
-        return redirect('/feedback')
+    return redirect('/feedback')
 
 @app.route('/logout')
 def logout():
