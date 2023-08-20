@@ -10,14 +10,16 @@
     <title>Login</title>
 </head>
 <body>
-    <h2 class="login">Login</h2>
-    <form class="form4" method="POST" action="/login">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password"><br><br>
-      <input type="submit" value="Login">
-    </form>
-    <a href="{{ url_for('signup') }}"><button id = "button2">Sign Up</button></a>
+  
+  <h2 class="login">Login</h2>
+  <form class="form4" method="POST" action="/login">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+  <a href="{{ url_for('signup') }}"><button id = "button2">Sign Up</button></a>
+  <img id="background-img1" src="{{ url_for('static', filename='images/chat_bubble_1.png') }}">
 </body>
 </html>
