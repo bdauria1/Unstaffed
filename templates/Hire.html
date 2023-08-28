@@ -23,14 +23,14 @@
             <a href="/logout">Logout</a>
         </div>
     </div>
-    <div class="user_display">
-        <h1>Profile</h1>
-        <h2> Userame: {{ user.0}}</h2>
-        <h2>Email: {{ user.1 }}</h2>
-        <h2>About Me: {{ user.5 }}</h2>
-        <h2>Location: {{ user.3 }}</h2>
-        <h2>Skills: {{ user.4 }}</h2>
-        <h2>Salary: {{ user.2 }}</h2>
-        <a href="{{ url_for('hire') }}"><button id="button1">Hire</button></a>
+    <form class="form4" method="POST" action="/contractmaking">
+        <select id="fixed/hourly" name="weekly/hourly" required>
+            <option value="fixed">Fixed</option>
+            <option value="hourly">Hourly</option>
+        </select>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+        <input type="submit" value="Send">
+    </form>
 </body>
 </html>

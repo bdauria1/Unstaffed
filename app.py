@@ -262,6 +262,45 @@ def like(id):
 
     return redirect('/feedback')
 
+@app.route('/hire/<freelancer_username>', methods=['GET', 'POST'])
+def hire():
+    if request.method == 'POST':
+        client_username = session['username']
+        description = request.form['description']
+        hourly_fixed = request.form['hourly_fixed']
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (client_username,))
+        client_id = cur.fetchone()
+
+        cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (freelancer_username,))
+        freelancer_id = cur.fetchone()
+
+        cur.execute("INSERT INTO contract(client_id, freelancer_id, description, hourly_fixed) VALUES(%s, %s, %s, %s)",
+                    (client_id, freelancer_id, description, hourly_fixed))
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect('/contracts')
+    
+    return render_template('Hire.html')      
+
+@app.route('/requests')
+def requests():
+    freelancer_username = session['username']
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (freelancer_username,))
+    freelancer_id = cur.fetchone()
+
+    cur.execute("SELECT client_id, description, hourlyorfixed FROM contract WHERE freelancer_id = %s", (freelancer_id,))
+    requests = cur.fetchall()
+
+    mysql.connection.commit()
+    cur.close()
+
+    return render_template('Requests.html', requests=requests)
+
 @app.route('/logout')
 def logout():
     session.clear()

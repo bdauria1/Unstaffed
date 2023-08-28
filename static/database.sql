@@ -30,3 +30,14 @@ CREATE TABLE posts(
     post_text TEXT,
     likes INT
 );
+
+CREATE TABLE contract(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT,
+    freelancer_id INT,
+    description VARCHAR(255),
+    hourlyorfixed VARCHAR(255),
+    rate INT,
+    FOREIGN KEY (client_id) REFERENCES unstaffedusers(id),
+    FOREIGN KEY (freelancer_id) REFERENCES unstaffedusers(id)
+);
