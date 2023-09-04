@@ -14,7 +14,6 @@
             <img src="{{ url_for('static', filename='images/Nav_logo.png') }}" alt="nav_logo" class="nav_logo">
         </div>
         <div class="nav_tabs">
-            <a href="/home">Home</a>
             <a href="/search">Search</a>
             <a href="/dashboard">Profile</a>
             <a href="/contacts">Contacts</a>
@@ -23,14 +22,14 @@
             <a href="/logout">Logout</a>
         </div>
     </div>
-    <form class="form4" method="POST" action="/contractmaking">
-        <select id="fixed/hourly" name="weekly/hourly" required>
+    <form class="form4" method="POST" action="/hire/{{freelancer_username}}">
+        <select id="hourly_fixed" name="hourly_fixed" required>
             <option value="fixed">Fixed</option>
             <option value="hourly">Hourly</option>
         </select>
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" required><br><br>
         <input type="submit" value="Send">
-    </form>
+    </form>    
 </body>
 </html>

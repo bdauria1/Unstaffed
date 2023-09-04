@@ -16,10 +16,6 @@ def welcome():
     session.clear()
     return render_template('Welcome.html')
 
-@app.route('/home')
-def home():
-    return render_template('Home.html')
-
 # Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -259,11 +255,10 @@ def like(id):
     cur.execute("UPDATE posts SET likes = likes + 1 WHERE id = %s", (id,))
     mysql.connection.commit()
     cur.close()
-
     return redirect('/feedback')
 
 @app.route('/hire/<freelancer_username>', methods=['GET', 'POST'])
-def hire():
+def hire(freelancer_username):
     if request.method == 'POST':
         client_username = session['username']
         description = request.form['description']
@@ -276,12 +271,12 @@ def hire():
         cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (freelancer_username,))
         freelancer_id = cur.fetchone()
 
-        cur.execute("INSERT INTO contract(client_id, freelancer_id, description, hourly_fixed) VALUES(%s, %s, %s, %s)",
+        cur.execute("INSERT INTO contract(client_id, freelancer_id, description, hourlyorfixed) VALUES(%s, %s, %s, %s)",
                     (client_id, freelancer_id, description, hourly_fixed))
         mysql.connection.commit()
         cur.close()
 
-        return redirect('/contracts')
+        return redirect('/dashboard')
     
     return render_template('Hire.html')      
 
@@ -293,13 +288,23 @@ def requests():
     cur.execute("SELECT id FROM unstaffedusers WHERE username = %s", (freelancer_username,))
     freelancer_id = cur.fetchone()
 
-    cur.execute("SELECT client_id, description, hourlyorfixed FROM contract WHERE freelancer_id = %s", (freelancer_id,))
+    cur.execute("SELECT id, client_id, description, hourlyorfixed FROM contract WHERE freelancer_id = %s", (freelancer_id,))
     requests = cur.fetchall()
 
     mysql.connection.commit()
     cur.close()
 
     return render_template('Requests.html', requests=requests)
+
+@app.route('/view_contract/<int:id>')
+def view_contract(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT client_id, description, hourlyorfixed FROM contract WHERE id = %s", (id,))
+    contract = cur.fetchone()
+    mysql.connection.commit()
+    cur.close()
+
+    return render_template('View_contract.html', contract=contract)
 
 @app.route('/logout')
 def logout():

@@ -14,7 +14,6 @@
             <img src="{{ url_for('static', filename='images/Nav_logo.png') }}" alt="nav_logo" class="nav_logo">
         </div>
         <div class="nav_tabs">
-            <a href="/home">Home</a>
             <a href="/search">Search</a>
             <a href="/dashboard">Profile</a>
             <a href="/contacts">Contacts</a>
@@ -31,6 +30,6 @@
         <h2>Location: {{ user.3 }}</h2>
         <h2>Skills: {{ user.4 }}</h2>
         <h2>Salary: {{ user.2 }}</h2>
-        <a href="{{ url_for('hire') }}"><button id="button1">Hire</button></a>
+        <a href="{{ url_for('hire', freelancer_username=user.0)}}"><button id = "button1">Hire</button></a>
 </body>
 </html>
